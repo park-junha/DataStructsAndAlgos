@@ -7,7 +7,7 @@ class Queue:
         self.size = 0
 
     def enqueue(self, value):
-        if self.tail:
+        if self.head:
             new = Node(value)
             self.tail.next = new
             self.tail = self.tail.next
@@ -22,6 +22,12 @@ class Queue:
             self.head = self.head.next
             self.size -= 1
             return rm
+        else:
+            return None
+
+    def peek(self):
+        if self.head:
+            return self.head.val
         else:
             return None
 
