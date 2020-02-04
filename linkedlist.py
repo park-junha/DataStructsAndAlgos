@@ -1,4 +1,4 @@
-from node import Node
+from node import Node, DoubleNode
 
 class SinglyLinkedList:
     def __init__(self):
@@ -68,4 +68,69 @@ class SinglyLinkedList:
             p += str(current.val) + " -> "
             current = current.next
         p += "]"
+        return p
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = self.tail = None
+        self.size = 0
+
+    def insertAtHead(self, value):
+        new = DoubleNode(value)
+        new.next = self.head
+        if self.head:
+            self.head.prev = new
+        self.head = new
+        if self.size is 0:
+            self.tail = self.head
+        self.size += 1
+        return self.size
+
+    def insertAtTail(self, value):
+        new = DoubleNode(value)
+        new.prev = self.tail
+        if self.tail:
+            self.tail.next = new
+        self.tail = new
+        if self.size is 0:
+            self.head = self.tail
+        self.size += 1
+        return self.size
+
+    def removeHead(self):
+        if self.head:
+            rm = self.head.val
+            self.head = self.head.next
+            self.size -= 1
+            if not self.resetIfEmpty():
+                self.head.prev = None
+            return rm
+        else:
+            return None
+
+    def removeTail(self):
+        if self.tail:
+            rm = self.tail.val
+            self.tail = self.tail.prev
+            self.size -= 1
+            if not self.resetIfEmpty():
+                self.tail.next = None
+            return rm
+        else:
+            return None
+
+    def resetIfEmpty(self):
+        if self.size < 1:
+            self.head = self.tail = None
+            self.size = 0
+            return True
+        return False
+
+    def printList(self):
+        p = "doubly linked list: (h)[ <-> "
+        current = self.head
+        while current:
+            p += str(current.val) + " <-> "
+            current = current.next
+        p += "](t)"
         return p
