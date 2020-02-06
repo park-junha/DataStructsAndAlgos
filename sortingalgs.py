@@ -1,4 +1,21 @@
 # Take Python array as input
+def BubbleSort(arr):
+    print(arr)
+    size = len(arr)
+    didSwap = True
+    while didSwap:
+        print("Starting pass")
+        didSwap = False
+        for pivot in range(1, size):
+            print("Current bubble: (" + str(pivot-1) + ",", str(pivot) + ")")
+            if arr[pivot-1] > arr[pivot]:
+                print("Swapping")
+                didSwap = True
+                arr[pivot-1], arr[pivot] = arr[pivot], arr[pivot-1]
+            print(arr)
+    return arr
+
+# Take Python array as input
 def SelectionSort(arr):
     print(arr)
     size = len(arr)
